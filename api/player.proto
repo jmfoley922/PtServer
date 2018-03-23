@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package player;
+
+message CardIn {
+    string machNumber = 1;
+    int32 cardNumber  = 2;
+    string startTime = 3;
+}
+
+message MeterUpdate {
+    string machNumber = 1;
+    int32 cardNumber = 2;
+    int32 coinIn = 3;
+    int32 coinOut  = 4;
+    int32 jackpot = 5;
+
+}
+
+message CardOut {
+    string machNumber = 1;
+    int32 cardNumber = 2;
+    int32 coinIn = 3;
+    int32 coinOut = 4;
+    int32 jackpot = 5;
+    int32 endTime = 6;
+}
+
+message PointUpdate{
+    string machNumber = 1;
+    int32 cardNumber = 2;
+    int32 newPointBalance = 3;
+}
+
+message Status {
+    string message = 1;
+    int32 points = 2;
+    string displayName = 3;
+}
+
+service PlayerTracking {
+    rpc CardInEvent(CardIn) returns (Status) {}
+    rpc MeterUpdateEvent(MeterUpdate) returns (PointUpdate) {}
+    rpc CardOutEvent(CardOut) returns (Status) {}
+  }
+
