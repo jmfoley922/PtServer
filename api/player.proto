@@ -36,6 +36,7 @@ message Status {
     string message = 1;
     int32 points = 2;
     string displayName = 3;
+   
 }
 
 service PlayerTracking {
